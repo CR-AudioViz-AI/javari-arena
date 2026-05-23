@@ -1,39 +1,32 @@
-// app/page.tsx — Javari Model Arena
-// CR AudioViz AI · EIN 39-3646201 · May 2026
-'use client'
-import { useState, useRef } from 'react'
-const getFeatures = () => [
-  { e: '⚡', t: 'AI-Powered', d: 'Built on Javari AI — smart, fast, accurate' },
-  { e: '🔐', t: 'Your Data', d: 'Everything you create belongs to you. No lock-in.' },
-  { e: '💳', t: '50 Free Credits', d: 'Start free. Credits never expire.' },
-  { e: '🔗', t: 'One Platform', d: 'One account. 150+ Javari apps.' },
-]
-export default function Page() {
-  const features = getFeatures()
-  return (
-    <div style={{ minHeight: '100vh', background: '#0a0a0f', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif' }}>
-      <div style={{ height: 60 }} />
-      <section style={{ textAlign: 'center', padding: '64px 24px 40px', maxWidth: 700, margin: '0 auto' }}>
-        <div style={{ fontSize: 56, marginBottom: 16 }}>🤖</div>
-        <h1 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 800, margin: '0 0 16px', color: '#8b5cf6' }}>Javari Model Arena</h1>
-        <p style={{ fontSize: 18, color: '#9ca3af', maxWidth: 520, margin: '0 auto 32px', lineHeight: 1.65 }}>Compare 300+ AI models side by side — benchmark outputs, find the best model.</p>
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="https://craudiovizai.com/auth/signup" style={{ background: '#8b5cf6', color: '#fff', borderRadius: 10, padding: '13px 28px', fontSize: 15, fontWeight: 700, textDecoration: 'none' }}>Start Free →</a>
-          <a href="https://craudiovizai.com" style={{ background: 'rgba(255,255,255,0.06)', color: '#e2e8f0', borderRadius: 10, padding: '13px 28px', fontSize: 15, fontWeight: 600, textDecoration: 'none' }}>View Platform</a>
-        </div>
-      </section>
-      <section style={{ maxWidth: 800, margin: '0 auto', padding: '0 20px 60px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))', gap: 16 }}>
-        {features.map(f => (
-          <div key={f.t} style={{ background: '#111118', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 14, padding: '20px 16px' }}>
-            <div style={{ fontSize: 28, marginBottom: 8 }}>{f.e}</div>
-            <div style={{ fontWeight: 700, fontSize: 14, color: '#e2e8f0', marginBottom: 4 }}>{f.t}</div>
-            <div style={{ fontSize: 13, color: '#6b7280', lineHeight: 1.5 }}>{f.d}</div>
-          </div>
-        ))}
-      </section>
-      <footer style={{ background: '#050609', borderTop: '1px solid rgba(255,255,255,0.04)', padding: '20px', textAlign: 'center' }}>
-        <p style={{ color: '#374151', fontSize: 11, margin: 0 }}>© 2026 CR AudioViz AI, LLC — EIN: 39-3646201 · <a href="https://craudiovizai.com/auth/signup" style={{ color: '#8b5cf6', textDecoration: 'none' }}>Sign Up Free</a></p>
-      </footer>
-    </div>
-  )
+"use client";
+// app/page.tsx — Javari Arena · CR AudioViz AI · EIN 39-3646201 · May 2026
+import { useState } from "react";
+const T=[{"i": "\ud83c\udfc6", "l": "Leaderboard", "d": "Top performers", "h": "/leaderboard"}, {"i": "\ud83c\udfaf", "l": "Challenges", "d": "Daily challenges", "h": "/challenges"}, {"i": "\ud83c\udfc5", "l": "Achievements", "d": "Earn badges", "h": "/achievements"}, {"i": "\ud83d\udcca", "l": "Stats", "d": "Performance analytics", "h": "/stats"}];
+export default function P() {
+  const [i,setI]=useState(""); const [o,setO]=useState(""); const [l,setL]=useState(false);
+  async function go() { if(!i.trim())return; setL(true);setO("");
+    try { const r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:[{role:"user",content:i}],stream:false,systemOverride:"You are a gamification and competition expert."})});
+      const d=await r.json(); setO(d?.choices?.[0]?.message?.content||d?.content||"Error.");
+    } catch {setO("Error.");} setL(false); }
+  return (<div style={{minHeight:"100vh",background:"#040912",color:"#e2e8f0",fontFamily:"system-ui"}}>
+    <nav style={{background:"#1E3A5F",padding:"0 20px",height:52,display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,zIndex:100}}>
+      <div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:20}}>🏟️</span><span style={{fontWeight:800,color:"#FF0800",fontSize:15}}>Javari Arena</span></div>
+      <a href="https://craudiovizai.com/auth/signup" style={{background:"#FF0800",color:"#fff",borderRadius:7,padding:"5px 14px",fontSize:12,fontWeight:700,textDecoration:"none"}}>Sign Up Free</a>
+    </nav>
+    <section style={{background:"linear-gradient(135deg,#1E3A5F,#040912)",padding:"48px 24px 40px",textAlign:"center"}}>
+      <h1 style={{fontSize:"clamp(22px,4vw,42px)",fontWeight:900,color:"#fff",margin:"0 0 10px",lineHeight:1.05}}>Javari<br/><span style={{color:"#FF0800"}}>Arena</span></h1>
+      <p style={{color:"rgba(255,255,255,0.7)",fontSize:15,margin:0}}>Competitive challenges, leaderboards, and achievement tracking.</p>
+    </section>
+    <section style={{maxWidth:700,margin:"0 auto",padding:"24px 20px 0"}}>
+      <div style={{background:"#0F1F32",border:"1px solid rgba(0,180,216,0.12)",borderRadius:14,padding:"18px 22px"}}>
+        <div style={{display:"flex",gap:8}}><input value={i} onChange={e=>setI(e.target.value)} onKeyDown={e=>e.key==="Enter"&&go()} placeholder="Create a challenge for: content creators competing on social media growth" style={{flex:1,background:"#172D48",border:"1px solid rgba(0,180,216,0.15)",borderRadius:8,padding:"10px 12px",color:"#e2e8f0",fontSize:13,outline:"none",fontFamily:"system-ui"}}/>
+        <button onClick={go} disabled={l||!i.trim()} style={{background:l||!i.trim()?"#0F1F32":"#1E3A5F",color:l||!i.trim()?"#374151":"#FF0800",border:"1px solid rgba(0,180,216,0.2)",borderRadius:8,padding:"10px 18px",fontSize:13,fontWeight:700,cursor:l||!i.trim()?"not-allowed":"pointer",fontFamily:"system-ui"}}>{l?"...":"Go"}</button></div>
+        {o&&<pre style={{marginTop:12,padding:"12px",background:"rgba(0,180,216,0.05)",border:"1px solid rgba(0,180,216,0.1)",borderRadius:8,fontSize:13,color:"#e2e8f0",lineHeight:1.65,whiteSpace:"pre-wrap",fontFamily:"system-ui",maxHeight:300,overflowY:"auto",margin:"12px 0 0"}}>{o}</pre>}
+      </div>
+    </section>
+    <section style={{maxWidth:960,margin:"0 auto",padding:"28px 20px 64px"}}><div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(190px,1fr))",gap:10}}>
+      {T.map((t:any)=>(<a key={t.h} href={t.h} style={{background:"#0F1F32",border:"1px solid rgba(0,180,216,0.08)",borderRadius:12,padding:"16px",textDecoration:"none",display:"block"}}><span style={{fontSize:24,display:"block",marginBottom:7}}>{t.i}</span><div style={{fontWeight:700,fontSize:13,color:"#e2e8f0",marginBottom:3}}>{t.l}</div><div style={{fontSize:11,color:"#6B7280",lineHeight:1.4}}>{t.d}</div></a>))}
+    </div></section>
+    <footer style={{borderTop:"1px solid rgba(0,180,216,0.08)",padding:"12px 24px",textAlign:"center"}}><p style={{color:"#374151",fontSize:11,margin:0}}>© 2026 CR AudioViz AI, LLC — EIN: 39-3646201</p></footer>
+  </div>);
 }
