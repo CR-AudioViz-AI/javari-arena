@@ -6,7 +6,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'crav-model-arena | CR AudioViz AI',
+  title: 'javari-model-arena | CR AudioViz AI',
   description: 'Part of the CR AudioViz AI creative ecosystem',
   formatDetection: { telephone: false },
 }
