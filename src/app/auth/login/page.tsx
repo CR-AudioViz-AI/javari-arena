@@ -17,11 +17,11 @@ export default function LoginPage() {
           <form className="space-y-4">
             <div>
               <label className="block text-sm text-zinc-400 mb-2">Email</label>
-              <input type="email" placeholder="you@example.com" className="input" />
+              <input type="email" placeholder="you@example.com" className="input" aria-label="you@example.com" />
             </div>
             <div>
               <label className="block text-sm text-zinc-400 mb-2">Password</label>
-              <input type="password" placeholder="••••••••" className="input" />
+              <input type="password" placeholder="••••••••" className="input" aria-label="••••••••" />
             </div>
             <button type="submit" className="w-full py-3 bg-violet-600 hover:bg-violet-500 rounded-lg font-medium text-white">Sign In</button>
           </form>
