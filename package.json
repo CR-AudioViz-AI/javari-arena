@@ -11,7 +11,7 @@
   "dependencies": {
     "@craudioviz/platform-sdk": "git+https://github.com/CR-AudioViz-AI/platform-sdk.git#31a7f6ddb0e3f79f7dbc5d16c83273221f872647",
     "next": "^16.3.4",
-    "react": "^18.3.1",
+    "react": "^19.3.0",
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.17",
     "autoprefixer": "^10.4.20",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/react": "^19",
     "@types/react-dom": "^18",
     "typescript": "^5"
   }
